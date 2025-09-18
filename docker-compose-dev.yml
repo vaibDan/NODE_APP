@@ -1,0 +1,39 @@
+services:
+  nginx:
+    ports:
+      - "3000:80"
+  node-app:
+    build: 
+      context: .
+      args:
+        - NODE_ENV=development
+    environment:
+      - NODE_ENV=development
+      - MONGO_USER=admin
+      - MONGO_PASSWORD=password
+      - SESSION_SECRET=secret
+    volumes:
+      - ./:/app
+      - /app/node_modules
+    command: ["npm", "run", "dev"]
+    # networks:
+    #   - my-custom-network
+
+  mongo:
+    # image: mongo
+    # ports:
+    #   - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password
+    # volumes:
+    #   - mongo-data:/data/db
+    # networks:
+    #   - my-custom-network
+
+# volumes:
+#   mongo-data:
+
+# networks:
+#   my-custom-network:
+#     driver: bridge
