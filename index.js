@@ -48,12 +48,9 @@ app.use(express.json());
 
 app.get('/api/v1', (req, res) => {
     res.status(200).json("ya node-app is running perfectly ");
-    console.log("yes node-app is running perfectly ")
 });
 
-app.listen(80, function () {
-    console.log('CORS-enabled web server listening on port 80')
-})
+
 
 app.use("/api/v1/posts", postRoutes);
 app.use("/api/v1/users", userRoutes);

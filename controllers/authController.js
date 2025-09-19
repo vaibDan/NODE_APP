@@ -38,9 +38,7 @@ exports.login = async (req, res) => {
                 message: 'Invalid username or password'
             });
         }
-            req.session.user = user._id;
-            console.log('Session user set:', req.session.user);
-        console.log(req.session);
+        req.session.user = user._id;
         res.status(200).json({
             status: 'success',
             data: user,
